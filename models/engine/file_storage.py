@@ -42,7 +42,7 @@ class FileStorage:
         for key, value in self.__objects.items():
             objects[key] = value.to_dict()
 
-        with open(self.__file_path, 'w', encoding='utf-8') as file:
+        with open(FileStorage.__file_path, 'w', encoding='utf-8') as file:
             json.dump(objects, file)  # ...indent=4) for  indentation of 4
 
     def reload(self):
@@ -50,7 +50,7 @@ class FileStorage:
         # from models.base_model import BaseModel
         # definedclass= {'BaseModel': BaseModel}
         try:
-            with open(self.__file_path) as file:
+            with open(FileStorage.__file_path) as file:
                 content = file.read()
                 if content:
                     loaded_content = json.loads(content)
