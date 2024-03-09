@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python2
 """ File Storage Module """
 import json
 from datetime import datetime
@@ -9,6 +9,8 @@ from models.state import State
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+
+
 class FileStorage:
     """ Class for Serlization and deserilization """
     __file_path = "file.json"
@@ -16,12 +18,12 @@ class FileStorage:
     definedclass = {
             'BaseModel': BaseModel,
             'User': User,
-	    'Place': Place,
-	    'Amenity': Amenity,
-	    'City': City,
-	    'Review': Review,
-	    'State': State,
-    	}
+            'Place': Place,
+            'Amenity': Amenity,
+            'City': City,
+            'Review': Review,
+            'State': State,
+    }
 
     def all(self):
         """ Retuns the dictionary of file storage"""
@@ -41,7 +43,7 @@ class FileStorage:
             objects[key] = value.to_dict()
 
         with open(self.__file_path, 'w', encoding='utf-8') as file:
-            json.dump(objects, file) # json.dump(..., ,indent=4) is you want indentation of 4 
+            json.dump(objects, file)  # ...indent=4) for  indentation of 4
 
     def reload(self):
         """ Relaod the json file to python dictionary """
