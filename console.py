@@ -14,11 +14,12 @@ class HBNBCommand(cmd.Cmd):
 		""" EOF RETURNS TRUE ,THEN A NEW LINE
 		"""
 		return (True)
-	
+		
 	def emptyline(self):
 		""" THIS IS AN EMPTY LINE
 		"""
 		pass
+
 	def do_create(self, line):
 		""" TO CREATE NEW INSTANCES
 		USAGE: <create> <class>
@@ -30,6 +31,7 @@ class HBNBCommand(cmd.Cmd):
 		else:
 			instance_1 = FileStorage.definedclass[line]() #instance_1 = BaseModel
 			print(instance_1.id)
+
 	def do_show(self, line):
 		""" THIS SHOWS THE ATTRIBUTE OF AN OBJECT BASED ON ITS CLASS AND ID
 		USAGE: <show> <class> <id> 
