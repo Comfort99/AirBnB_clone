@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" Is this necessary?"""
 import cmd
 import sys
 from models import storage
