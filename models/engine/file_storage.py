@@ -23,7 +23,7 @@ class FileStorage:
             'City': City,
             'Review': Review,
             'State': State,
-    } 
+    }
 
     def all(self):
         """ Retuns the dictionary of file storage"""
