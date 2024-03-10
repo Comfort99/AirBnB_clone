@@ -5,11 +5,6 @@ import sys
 from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
 
 class HBNBCommand(cmd.Cmd):
 	""" CLASS"""
@@ -18,6 +13,7 @@ class HBNBCommand(cmd.Cmd):
 	def do_EOF(self, line):
 		""" EOF RETURNS TRUE ,THEN A NEW LINE
 		"""
+		print()
 		return (True)
 		
 	def emptyline(self):
@@ -31,10 +27,15 @@ class HBNBCommand(cmd.Cmd):
 		"""
 		if line == "":
 			print("** class name missing **")
-		elif line not in  FileStorage.definedclass:
+			return
+		var = line.split()
+		cl_name = var[0]
+		if cl_name not in  FileStorage.definedclass:
 			print("** class doesn't exist **")
+			return
 		else:
 			instance_1 = FileStorage.definedclass[line]() #instance_1 = BaseModel
+			instance_1.save()
 			print(instance_1.id)
 
 	def do_show(self, line):
@@ -128,8 +129,11 @@ class HBNBCommand(cmd.Cmd):
 			print("** value missing **")
 			return	
 		attr_value = None
-		attr_value = eval(var[3])
-		setattr(storage.all()[key], var[2], attr_value)
+		try:
+			attr_value = eval(var[3])
+			setattr(storage.all()[key], var[2], attr_value)
+		except Exception as t:
+			print("** value missing **")
 		storage.save()
 		return
 
