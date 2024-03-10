@@ -49,8 +49,8 @@ class HBNBCommand(cmd.Cmd):
 			print("** class doesn't exist **")
 			return
 		if len(var) < 2:
-		 	print("** instance id missing **")
-		 	return
+			print("** instance id missing **")
+			return
 		instance_id = var[1]
 		key = "{}.{}".format(var[0], instance_id)
 		if key not in storage.all():
@@ -125,11 +125,10 @@ class HBNBCommand(cmd.Cmd):
 			print("** attribute name missing **")
 			return
 		if len(var) < 4:
-		 	print("** value missing **")
-		 	return
+			print("** value missing **")
+			return	
 		attr_value = None
 		attr_value = eval(var[3])
-		# var[3] = key var[4] = value
 		setattr(storage.all()[key], var[2], attr_value)
 		storage.save()
 		return
