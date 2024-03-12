@@ -18,7 +18,6 @@ print()
 print(my_new_model.id)
 print(my_new_model)
 print(type(my_new_model.created_at)
-
 # print("--")
 print(my_model is my_new_model)
 
