@@ -2,7 +2,7 @@
 """ A Basemodel testcases """
 import unittest
 from models.base_model import BaseModel
-import datetime
+# import datetime
 
 
 class Test_BaseModel(unittest.TestCase):
@@ -13,6 +13,8 @@ class Test_BaseModel(unittest.TestCase):
         self.base = BaseModel()
         self.base.name = "My first model"
         self.base.my_number = 98
+
+        self.dicts = self.base.to_dict()
         # self.base.created_at = datetime.datetime.now()
 
     def test_base_model_name(self):
@@ -37,6 +39,10 @@ class Test_BaseModel(unittest.TestCase):
         """ Testing the time created """
         self.assertTrue(self.base.created_at)
 
+    def test_to_dict(self):
+        # check_dict = self.base.to_dict()
+        self.assertIsInstance(self.dicts, dict)
+
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
