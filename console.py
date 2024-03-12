@@ -136,6 +136,78 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         storage.save()
 
+    def do_count(self, line):
+        """count the instances created"""
+        count = 0
+        for key in storage.all():
+            var = key.split(".")
+            if line == var[0]:
+                count += 1
+            print(count)
+
+    def default(self, line: str) -> None:
+        """Defalut argument passed to the cmdline"""
+        var = line.split(".")
+        
+        # all available instances
+        class_names = ['User', 'BaseModel',
+                       "Place", "City", "Amenity", "State",
+                       "Review"
+                       ]
+        
+        # prints all the instance based on the class name
+        if var[0] in class_names and var[1].endswith("all()"):
+            self.do_all(var[0])
+        # counting the instance based on the class
+        elif var[0] in class_names and var[1].endswith("count()"):
+            self.do_count(var[0])
+        elif var[0] in class_names and var[1].startswith("show"):
+            # show a dictionary representation based on the id passed
+            strip = var[1].strip("show(\"").strip("\")")
+            if key not in storage.all():
+                print('** no instance found **')
+                return
+            print(storage.all()[key])
+        
+        elif var[0] in class_names and var[1].startswith("destroy"):
+            #delete an instance based on the id passed
+            striped = var[1].strip("destroy(\"").strip("\")")
+            key = "{}.{}".format(var[0], striped)
+            if key not in storage.all():
+                print('** no instance found **')
+            del storage.all()[key]
+            storage.save()
+        
+        elif var[0] in class_names and var[1].startswith("update"):
+            striped = var[1].strip("update(\"").strip("\")")
+            striped_value = striped.split(",")
+         
+            # checks if it meets all expectations
+            if len(striped_value) < 3:
+                print("** value missing **")
+                return
+            
+            # stripped class_id, class_key, class_attr
+            class_id = striped_value[0].strip("\"")
+            class_key = striped_value[1]
+            class_attr = striped_value[2]
+            
+            key = "{}.{}".format(var[0], class_id)
+            if key not in storage.all():
+                print('** no instance found **')
+                return
+            
+            attribute_value = None
+            attr_key = None
+            
+            try:
+                attribute_value = eval(calss_attr)
+                attr_key = eval(class_key)
+                setattr(storage.all()[key], attr_key, attribute_value)
+            except Exception as e:
+                print('** value missing **')
+            storage.save()
+
     def do_quit(self, line):
         """ TO QUIT THE PROGRAM SUCCESSFULLY WITH THE STATUS CODE
         """
