@@ -1,0 +1,22 @@
+html {
+    height: 100vh;
+    position: relative;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.container {
+    height: fit-content;
+    max-width: 1000px;
+    margin: 30px auto;
+}

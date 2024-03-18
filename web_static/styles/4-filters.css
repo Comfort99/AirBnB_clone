@@ -1,0 +1,31 @@
+.container .filters {
+    height: 70px;
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    color: white;
+    /* background-color: red; */
+}
+.container button {
+    font-size: 18px;
+    background: #ff5a5f;
+    color: #ffffff;
+    height: 48px;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    float: right;
+    margin: 10px 0;
+    margin-right: 30px;
+}
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.container button:hover {
+    opacity: 90%;
+}
+
